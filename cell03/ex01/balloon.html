@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Exercise 01</title>
+    <style>
+      #balloon {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="balloon"></div>
+    <script>
+      const balloonElement = document.getElementById("balloon");
+      let i = 0;
+      const colors = ["red", "green", "blue"];
+      balloonElement.addEventListener("click", () => {
+        // increase balloon size
+        balloonElement.style.width = balloonElement.clientWidth + 10 + "px";
+        balloonElement.style.height = balloonElement.clientHeight + 10 + "px";
+
+        // check the explod condition
+        if (balloonElement.clientWidth > 420) {
+          balloonElement.style.width = "200px";
+          balloonElement.style.height = "200px";
+        }
+
+        // change the background color
+        if (i === 2) {
+          i = 0;
+        } else {
+          i++;
+        }
+        balloonElement.style.backgroundColor = colors[i];
+      });
+
+      // mouse leave listener
+      balloonElement.addEventListener("mouseleave", () => {
+        // shrink balloon size
+        if (balloonElement.clientWidth > 200) {
+          balloonElement.style.width = balloonElement.clientWidth - 5 + "px";
+          balloonElement.style.height = balloonElement.clientHeight - 5 + "px";
+        }
+        i = i === 0 ? 2 : i - 1;
+        balloonElement.style.backgroundColor = colors[i];
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>Exercise 02</title>
+    <style>
+      .container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      input {
+        width: 100px;
+      }
+      #myButton {
+        margin-top: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input type="number" id="leftNumber" />
+      <select name="options" id="options">
+        <option value="selectOption">Select...</option>
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+      </select>
+      <input type="number" id="rightNumber" />
+      <div><button id="myButton">Try me!</button></div>
+    </div>
+
+    <script>
+      setInterval(() => {
+        alert("Please, use me...");
+      }, 30000);
+      const button = document.getElementById("myButton");
+      button.addEventListener("click", () => {
+        const operationValue = document.getElementById("options").value;
+        const leftInput = parseInt(document.getElementById("leftNumber").value);
+        const rightInput = parseInt(
+          document.getElementById("rightNumber").value
+        );
+        let result;
+        if (leftInput >= 0 && rightInput >= 0) {
+          switch (operationValue) {
+            case "+":
+              result = leftInput + rightInput;
+              break;
+            case "-":
+              result = leftInput - rightInput;
+              break;
+            case "*":
+              result = leftInput * rightInput;
+              break;
+            case "/":
+              if (rightInput === 0) {
+                result = "It’s over 9000!";
+              } else {
+                result = leftInput / rightInput;
+              }
+              break;
+            case "%":
+              if (rightInput === 0) {
+                result = "It’s over 9000!";
+              } else {
+                result = leftInput % rightInput;
+              }
+              break;
+            default:
+              result = "Invalid";
+          }
+          console.log(result);
+        } else {
+          result = "Error :(";
+        }
+        alert(result);
+      });
+    </script>
+  </body>
+</html>
